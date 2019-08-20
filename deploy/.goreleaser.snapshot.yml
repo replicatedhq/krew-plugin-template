@@ -1,0 +1,29 @@
+project_name: PLUGIN
+release:
+  github:
+    owner: OWNER
+    name: REPO
+builds:
+  - id: PLUGIN
+    goos:
+    - linux
+    - windows
+    - darwin
+    goarch:
+    - amd64
+    - "386"
+    env:
+      - CGO_ENABLED=0
+      - GO111MODULE=on
+    main: cmd/plugin/main.go
+    ldflags: -s -w
+      -X github.com/OWNER/REPO/pkg/version.version={{.Version}}
+      -X github.com/OWNER/REPO/pkg/version.gitSHA={{.Commit}}
+      -X github.com/OWNER/REPO/pkg/version.buildTime={{.Date}}
+      -extldflags "-static"
+    flags: -tags netgo -installsuffix netgo
+    binary: PLUGIN
+    hooks: {}
+
+snapshot:
+  name_template: SNAPSHOT-{{ .Commit }}
