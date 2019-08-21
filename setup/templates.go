@@ -1,9 +1,9 @@
 package main
 
 import (
-	"path/filepath"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 	"text/template"
 
@@ -67,5 +67,5 @@ func renderTemplates(templateContext TemplateContext) error {
 		return errors.Wrap(err, "failed to walk directory")
 	}
 
-	return  nil
+	return nil
 }

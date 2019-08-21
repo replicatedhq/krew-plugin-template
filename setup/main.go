@@ -3,12 +3,13 @@ package main
 import (
 	"fmt"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 
-	"github.com/replicatedhq/krew-plugin-template/pkg/logger"
-	"github.com/pkg/errors"
 	"github.com/manifoldco/promptui"
+	"github.com/pkg/errors"
+	"github.com/replicatedhq/krew-plugin-template/pkg/logger"
 )
 
 type TemplateContext struct {
