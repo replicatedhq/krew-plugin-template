@@ -70,6 +70,7 @@ func main() {
 
 	log.Instructions("Your kubectl krew pluigin has been initialized in this directory.")
 	log.Instructions("For next steps, visit https://github.com/replicatedhq/krew-plugin-template")
+	log.Info("")
 }
 
 func promptForOwner() (string, error) {

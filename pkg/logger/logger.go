@@ -32,5 +32,4 @@ func (l *Logger) Instructions(msg string, args ...interface{}) {
 	white := color.New(color.FgHiWhite)
 	white.Println("")
 	white.Println(fmt.Sprintf(msg, args...))
-	white.Println("")
 }
