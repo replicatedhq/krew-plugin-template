@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/replicatedhq/krew-plugin-template/pkg/logger"
 	"github.com/pkg/errors"
-
 	"github.com/manifoldco/promptui"
 )
 
@@ -42,7 +42,16 @@ func main() {
 		PluginName: pluginName,
 	}
 
+	log := logger.NewLogger()
+	log.Info("Updating sample code with names")
+
 	if err := renderTemplates(templateContext); err != nil {
+		fmt.Printf("%v\n", errors.Cause(err))
+		os.Exit(1)
+	}
+
+	log.Info("Updating go.mod")
+	if err := renderGoMod(templateContext); err != nil {
 		fmt.Printf("%v\n", errors.Cause(err))
 		os.Exit(1)
 	}

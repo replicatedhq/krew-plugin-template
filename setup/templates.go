@@ -67,5 +67,5 @@ func renderTemplates(templateContext TemplateContext) error {
 		return errors.Wrap(err, "failed to walk directory")
 	}
 
-	return errors.New("not implt")
+	return  nil
 }
