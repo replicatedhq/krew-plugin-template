@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -43,8 +42,6 @@ func renderTemplates(templateContext TemplateContext) error {
 			if fi.IsDir() {
 				return nil
 			}
-
-			fmt.Println(path)
 
 			tmpl, err := template.ParseFiles(path)
 			if err != nil {
