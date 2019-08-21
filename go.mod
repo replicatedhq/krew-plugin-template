@@ -1,4 +1,4 @@
-module github.com/OWNER/REPO
+module github.com/replicatedhq/krew-plugin-template
 
 go 1.12
 
@@ -22,6 +22,7 @@ require (
 	github.com/hashicorp/go-multierror v1.0.0
 	github.com/hashicorp/go-version v1.1.0
 	github.com/imdario/mergo v0.3.7 // indirect
+	github.com/manifoldco/promptui v0.3.2
 	github.com/mholt/archiver v3.1.1+incompatible
 	github.com/minio/minio v0.0.0-20190813204106-bf9b619d8656
 	github.com/onsi/ginkgo v1.8.0 // indirect

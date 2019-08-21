@@ -3,19 +3,19 @@
 The following assumes you have the plugin installed via
 
 ```shell
-kubectl krew install PLUGIN
+kubectl krew install {{ .PluginName }}
 ```
 
 ### Scan images in your current kubecontext
 
 ```shell
-kubectl PLUGIN
+kubectl {{ .PluginName }}
 ```
 
 ### Scan images in another kubecontext
 
 ```shell
-kubectl PLUGIN --context=context-name
+kubectl {{ .PluginName }} --context=context-name
 ```
 
 ## How it works

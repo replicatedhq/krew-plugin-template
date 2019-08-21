@@ -1,7 +1,7 @@
 apiVersion: krew.googlecontainertools.github.com/v1alpha2
 kind: Plugin
 metadata:
-  name: PLUGIN
+  name: {{ .PluginName }}
 spec:
   version: "v0.1.0"
   platforms:
@@ -9,41 +9,41 @@ spec:
       matchLabels:
         os: linux
         arch: amd64
-    uri: https://github.com/OWNER/REPO/releases/download/v0.1.0/PLUGIN_0.1.0_linux_amd64-0.1.0.tar.gz
+    uri: https://github.com/{{ .Owner }}/{{ .Repo }}/releases/download/v0.1.0/{{ .PluginName }}_0.1.0_linux_amd64-0.1.0.tar.gz
     sha256: ""
     files:
-    - from: "./PLUGIN"
+    - from: "./{{ .PluginName }}"
       to: "."
-    bin: "PLUGIN"
+    bin: "{{ .PluginName }}"
   - selector:
       matchLabels:
         os: darwin
         arch: amd64
-    uri: https://github.com/OWNER/REPO/releases/download/v0.1.0/PLUGIN_0.3.1_darwin_amd64-0.1.0.tar.gz
+    uri: https://github.com/{{ .Owner }}/{{ .Repo }}/releases/download/v0.1.0/{{ .PluginName }}_0.3.1_darwin_amd64-0.1.0.tar.gz
     sha256: ""
     files:
-    - from: "./PLUGIN"
+    - from: "./{{ .PluginName }}"
       to: "."
-    bin: "PLUGIN"
+    bin: "{{ .PluginName }}"
   - selector:
       matchLabels:
         os: windows
         arch: amd64
-    uri: https://github.com/OWNER/REPO/releases/download/v0.1.0/PLUGIN_0.3.1_windows_amd64-0.1.0.zip
+    uri: https://github.com/{{ .Owner }}/{{ .Repo }}/releases/download/v0.1.0/{{ .PluginName }}_0.3.1_windows_amd64-0.1.0.zip
     sha256: ""
     files:
-    - from: "/PLUGIN.exe"
+    - from: "/{{ .PluginName }}.exe"
       to: "."
-    bin: "PLUGIN.exe"
+    bin: "{{ .PluginName }}.exe"
   shortDescription: A new plugin
-  homepage: https://github.com/OWNER/REPO
+  homepage: https://github.com/{{ .Owner }}/{{ .Repo }}
   caveats: |
     Usage:
-      $ kubectl PLUGIN
+      $ kubectl {{ .PluginName }}
 
     For additional options:
-      $ kubectl PLUGIN --help
-      or https://github.com/OWNER/REPO/blob/v0.1.0/doc/USAGE.md
+      $ kubectl {{ .PluginName }} --help
+      or https://github.com/{{ .Owner }}/{{ .Repo }}/blob/v0.1.0/doc/USAGE.md
 
   description: |
     This is a new plugin

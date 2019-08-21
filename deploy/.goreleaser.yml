@@ -1,10 +1,10 @@
-project_name: PLUGIN
+project_name: {{ .PluginName }}
 release:
   github:
-    owner: OWNER
-    name: REPO
+    owner: {{ .Owner }}
+    name: {{ .Repo }}
 builds:
-  - id: PLUGIN
+  - id: {{ .PluginName }}
     goos:
     - linux
     - windows
@@ -17,28 +17,4 @@ builds:
       - GO111MODULE=on
     main: cmd/plugin/main.go
     ldflags: -s -w
-      -X github.com/OWNER/REPO/pkg/version.version={{.Version}}
-      -X github.com/OWNER/REPO/pkg/version.gitSHA={{.Commit}}
-      -X github.com/OWNER/REPO/pkg/version.buildTime={{.Date}}
-      -extldflags "-static"
-    flags: -tags netgo -installsuffix netgo
-    binary: PLUGIN
-    hooks: {}
-archives:
-  - id: PLUGIN
-    builds:
-      - PLUGIN
-    format: tar.gz
-    format_overrides:
-      - goos: windows
-        format: zip
-    name_template: '{{ .Binary }}_{{.Version}}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{.Arm }}{{ end }}-{{ .Major }}.{{ .Minor }}.{{ .Patch }}'
-    files:
-      - licence*
-      - LICENCE*
-      - license*
-      - LICENSE*
-      - readme*
-      - README*
-      - changelog*
-      - CHANGELOG*
+      -X github.com/{{ .Owner }}/{{ .Repo }}/pkg/version.version=
