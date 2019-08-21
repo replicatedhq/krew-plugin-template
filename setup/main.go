@@ -67,6 +67,9 @@ func main() {
 		fmt.Printf("%v\n", errors.Cause(err))
 		os.Exit(1)
 	}
+
+	log.Instructions("Your kubectl krew pluigin has been initialized in this directory.")
+	log.Instructions("For next steps, visit https://github.com/replicatedhq/krew-plugin-template")
 }
 
 func promptForOwner() (string, error) {
