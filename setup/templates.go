@@ -60,7 +60,6 @@ func renderTemplates(templateContext TemplateContext) error {
 				return errors.Wrap(err, "failed to execute template")
 			}
 
-			fmt.Println(path)
 			return nil
 		})
 	if err != nil {
