@@ -8,6 +8,7 @@ import (
 
 	"github.com/pkg/errors"
 )
+
 func renderGoMod(templateContext TemplateContext) error {
 	input, err := ioutil.ReadFile(path.Join("..", "go.mod"))
         if err != nil {

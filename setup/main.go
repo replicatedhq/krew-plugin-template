@@ -43,7 +43,7 @@ func main() {
 	}
 
 	log := logger.NewLogger()
-	log.info("Updating README")
+	log.Info("Updating README")
 	if err := renderReadme(templateContext); err != nil {
 		fmt.Printf("%v\n", errors.Cause(err))
 		os.Exit(1)
