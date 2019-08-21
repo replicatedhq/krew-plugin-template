@@ -11,7 +11,7 @@ The assumptions made are:
 
 ## Create your repo
 
-On the top of this [repo](https://github.com/replicatedhq/krew-plugin-template), there's a button to create a new repo from this template. This is not a fork, it will make a copy of this repo into your own organization or GitHub account. 
+[Start here](https://github.com/replicatedhq/krew-plugin-template/generate) to create a new repo based on this template. This is not a fork, it will make a copy of this repo into your own organization or GitHub account. 
 
 Click that, and create your own version of this repo. Clone it locally. The rest of the steps you will be performing on your local copy.
 
