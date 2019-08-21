@@ -61,8 +61,11 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("%s/%s\n", owner, repo)
-	fmt.Printf("%s\n", pluginName)
+	log.Info("Removing the setup application")
+	if err := os.RemoveAll(path.Join("..", "setup")); err != nil {
+		fmt.Printf("%v\n", errors.Cause(err))
+		os.Exit(1)
+	}
 }
 
 func promptForOwner() (string, error) {
