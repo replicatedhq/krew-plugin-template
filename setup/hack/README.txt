@@ -1,6 +1,6 @@
-# {{ .PluginName }} kubectl PluginName
+# {{ .PluginName }} kubectl
 
-A `kubectl` plugin to ...<description of plugin>
+A `kubectl` plugin to ...
 
 ## Quick Start
 

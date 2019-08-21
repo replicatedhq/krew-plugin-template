@@ -68,7 +68,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	log.Instructions("Your kubectl krew pluigin has been initialized in this directory.")
+	log.Instructions("Your kubectl krew plugin has been initialized in this directory.")
 	log.Instructions("For next steps, visit https://github.com/replicatedhq/krew-plugin-template")
 	log.Info("")
 }
@@ -137,7 +137,7 @@ func promptForPluginName() (string, error) {
 		return "", errors.Wrap(err, "failed to get working dir")
 	}
 
-	pathParts := strings.Split(cwd, string(os.PathSeparator))
+	pathParts := strings.Split(filepath.Dir(cwd), string(os.PathSeparator))
 
 	validate := func(input string) error {
 		if len(input) == 0 {

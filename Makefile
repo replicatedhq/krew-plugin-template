@@ -7,7 +7,7 @@ test:
 
 .PHONY: bin
 bin: fmt vet
-	go build -o bin/{{ .PluginName }} github.com/{{ .Owner }}/{{ .Repo }}/cmd/{{ .PluginName }}
+	go build -o bin/{{ .PluginName }} github.com/{{ .Owner }}/{{ .Repo }}/cmd/plugin
 
 .PHONY: fmt
 fmt:
@@ -16,14 +16,6 @@ fmt:
 .PHONY: vet
 vet:
 	go vet ./pkg/... ./cmd/...
-
-.PHONY: snapshot-release
-snapshot-release:
-	curl -sL https://git.io/goreleaser | bash -s -- --rm-dist --snapshot --config deploy/.goreleaser.snapshot.yml
-
-.PHONY: release
-release:
-	curl -sL https://git.io/goreleaser | bash -s -- --rm-dist --config deploy/.goreleaser.yml
 
 .PHONY: kubernetes-deps
 kubernetes-deps:
