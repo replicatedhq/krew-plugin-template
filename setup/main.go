@@ -43,8 +43,13 @@ func main() {
 	}
 
 	log := logger.NewLogger()
-	log.Info("Updating sample code with names")
+	log.info("Updating README")
+	if err := renderReadme(templateContext); err != nil {
+		fmt.Printf("%v\n", errors.Cause(err))
+		os.Exit(1)
+	}
 
+	log.Info("Updating sample code with names")
 	if err := renderTemplates(templateContext); err != nil {
 		fmt.Printf("%v\n", errors.Cause(err))
 		os.Exit(1)
