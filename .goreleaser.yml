@@ -18,3 +18,11 @@ builds:
     main: cmd/plugin/main.go
     ldflags: -s -w
       -X github.com/{{ .Owner }}/{{ .Repo }}/pkg/version.version=
+archives:
+  - id: {{ .PluginName }}
+    builds:
+    - {{ .PluginName }}
+    name_template: {{ `"{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"` }}
+    format_overrides:
+    - goos: windows
+      format: zip
