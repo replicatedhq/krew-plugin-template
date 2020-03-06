@@ -14,6 +14,8 @@ spec:
     files:
     - from: "./{{ .PluginName }}"
       to: "."
+    - from: LICENSE
+      to: "."
     bin: "{{ .PluginName }}"
   - selector:
       matchLabels:
@@ -24,6 +26,8 @@ spec:
     files:
     - from: "./{{ .PluginName }}"
       to: "."
+    - from: LICENSE
+      to: "."
     bin: "{{ .PluginName }}"
   - selector:
       matchLabels:
@@ -33,6 +37,8 @@ spec:
     sha256: ""
     files:
     - from: "/{{ .PluginName }}.exe"
+      to: "."
+    - from: LICENSE
       to: "."
     bin: "{{ .PluginName }}.exe"
   shortDescription: A new plugin
