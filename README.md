@@ -52,7 +52,7 @@ make bin
 To create a new release of your plugin, create and push a tag.
 
 ```shell
-git tag v0.1.0
+git tag v0.1.0 -m 'initial release'
 git push --tags
 ```
 
