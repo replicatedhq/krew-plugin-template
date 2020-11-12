@@ -24,7 +24,6 @@ require (
 	github.com/imdario/mergo v0.3.7 // indirect
 	github.com/manifoldco/promptui v0.3.2
 	github.com/mholt/archiver v3.1.1+incompatible
-	github.com/minio/minio v0.0.0-20190813204106-bf9b619d8656
 	github.com/onsi/ginkgo v1.8.0 // indirect
 	github.com/onsi/gomega v1.5.0
 	github.com/opencontainers/go-digest v1.0.0-rc1 // indirect
