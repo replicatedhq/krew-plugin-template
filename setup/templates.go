@@ -34,6 +34,13 @@ func renderTemplates(templateContext TemplateContext) error {
 				}
 			}
 
+			// Ignore .github
+			if len(pathSplit) >= 2 {
+				if pathSplit[1] == ".github" {
+					return nil
+				}
+			}
+
 			fi, err := os.Stat(path)
 			if err != nil {
 				return errors.Wrap(err, "failed to read file info")
