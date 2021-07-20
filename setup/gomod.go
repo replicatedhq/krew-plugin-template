@@ -5,14 +5,12 @@ import (
 	"io/ioutil"
 	"path"
 	"strings"
-
-	"github.com/pkg/errors"
 )
 
 func renderGoMod(templateContext TemplateContext) error {
 	input, err := ioutil.ReadFile(path.Join("..", "go.mod"))
 	if err != nil {
-		return errors.Wrap(err, "failed to read go.mod")
+		return fmt.Errorf("failed to read go.mod: %w", err)
 	}
 
 	lines := strings.Split(string(input), "\n")
@@ -22,7 +20,7 @@ func renderGoMod(templateContext TemplateContext) error {
 	output := strings.Join(lines, "\n")
 	err = ioutil.WriteFile(path.Join("..", "go.mod"), []byte(output), 0644)
 	if err != nil {
-		return errors.Wrap(err, "failed to write go.mod")
+		return fmt.Errorf("failed to write go.mod: %w", err)
 	}
 
 	return nil

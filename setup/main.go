@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path"
@@ -8,7 +9,6 @@ import (
 	"strings"
 
 	"github.com/manifoldco/promptui"
-	"github.com/pkg/errors"
 	"github.com/replicatedhq/krew-plugin-template/pkg/logger"
 )
 
@@ -21,19 +21,19 @@ type TemplateContext struct {
 func main() {
 	owner, err := promptForOwner()
 	if err != nil {
-		fmt.Printf("%v\n", errors.Cause(err))
+		fmt.Printf("%v\n", errors.Unwrap(err))
 		os.Exit(1)
 	}
 
 	repo, err := promptForRepo()
 	if err != nil {
-		fmt.Printf("%v\n", errors.Cause(err))
+		fmt.Printf("%v\n", errors.Unwrap(err))
 		os.Exit(1)
 	}
 
 	pluginName, err := promptForPluginName()
 	if err != nil {
-		fmt.Printf("%v\n", errors.Cause(err))
+		fmt.Printf("%v\n", errors.Unwrap(err))
 		os.Exit(1)
 	}
 
@@ -46,25 +46,25 @@ func main() {
 	log := logger.NewLogger()
 	log.Info("Updating README")
 	if err := renderReadme(templateContext); err != nil {
-		fmt.Printf("%v\n", errors.Cause(err))
+		fmt.Printf("%v\n", errors.Unwrap(err))
 		os.Exit(1)
 	}
 
 	log.Info("Updating sample code with names")
 	if err := renderTemplates(templateContext); err != nil {
-		fmt.Printf("%v\n", errors.Cause(err))
+		fmt.Printf("%v\n", errors.Unwrap(err))
 		os.Exit(1)
 	}
 
 	log.Info("Updating go.mod")
 	if err := renderGoMod(templateContext); err != nil {
-		fmt.Printf("%v\n", errors.Cause(err))
+		fmt.Printf("%v\n", errors.Unwrap(err))
 		os.Exit(1)
 	}
 
 	log.Info("Removing the setup application")
 	if err := os.RemoveAll(path.Join("..", "setup")); err != nil {
-		fmt.Printf("%v\n", errors.Cause(err))
+		fmt.Printf("%v\n", errors.Unwrap(err))
 		os.Exit(1)
 	}
 
@@ -76,7 +76,7 @@ func main() {
 func promptForOwner() (string, error) {
 	cwd, err := os.Getwd()
 	if err != nil {
-		return "", errors.Wrap(err, "failed to get working dir")
+		return "", fmt.Errorf("failed to get working dir: %w", err)
 	}
 
 	pathParts := strings.Split(filepath.Dir(cwd), string(os.PathSeparator))
@@ -96,7 +96,7 @@ func promptForOwner() (string, error) {
 
 	result, err := prompt.Run()
 	if err != nil {
-		return "", errors.Wrap(err, "failed to prompt for github owner")
+		return "", fmt.Errorf("failed to prompt for github owner: %w", err)
 	}
 
 	return result, nil
@@ -105,14 +105,14 @@ func promptForOwner() (string, error) {
 func promptForRepo() (string, error) {
 	cwd, err := os.Getwd()
 	if err != nil {
-		return "", errors.Wrap(err, "failed to get working dir")
+		return "", fmt.Errorf("failed to get working dir: %w", err)
 	}
 
 	pathParts := strings.Split(filepath.Dir(cwd), string(os.PathSeparator))
 
 	validate := func(input string) error {
 		if len(input) == 0 {
-			return errors.New("Invalid")
+			return errors.New("invalid")
 		}
 		return nil
 	}
@@ -125,7 +125,7 @@ func promptForRepo() (string, error) {
 
 	result, err := prompt.Run()
 	if err != nil {
-		return "", errors.Wrap(err, "failed to prompt for github repo")
+		return "", fmt.Errorf("failed to prompt for github repo: %w", err)
 	}
 
 	return result, nil
@@ -134,7 +134,7 @@ func promptForRepo() (string, error) {
 func promptForPluginName() (string, error) {
 	cwd, err := os.Getwd()
 	if err != nil {
-		return "", errors.Wrap(err, "failed to get working dir")
+		return "", fmt.Errorf("failed to get working dir: %w", err)
 	}
 
 	pathParts := strings.Split(filepath.Dir(cwd), string(os.PathSeparator))
@@ -154,7 +154,7 @@ func promptForPluginName() (string, error) {
 
 	result, err := prompt.Run()
 	if err != nil {
-		return "", errors.Wrap(err, "failed to prompt for plugin name")
+		return "", fmt.Errorf("failed to prompt for plugin name: %w", err)
 	}
 
 	return result, nil

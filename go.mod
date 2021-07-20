@@ -1,6 +1,6 @@
 module github.com/replicatedhq/krew-plugin-template
 
-go 1.12
+go 1.16
 
 require (
 	github.com/Microsoft/go-winio v0.4.12 // indirect
@@ -28,7 +28,6 @@ require (
 	github.com/onsi/gomega v1.5.0
 	github.com/opencontainers/go-digest v1.0.0-rc1 // indirect
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
-	github.com/pkg/errors v0.8.1
 	github.com/smartystreets/assertions v0.0.0-20190401211740-f487f9de1cd3 // indirect
 	github.com/spf13/cobra v0.0.4
 	github.com/spf13/viper v1.4.0
