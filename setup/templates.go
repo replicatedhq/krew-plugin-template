@@ -1,12 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
-
-	"github.com/pkg/errors"
 )
 
 func renderTemplates(templateContext TemplateContext) error {
@@ -43,7 +42,7 @@ func renderTemplates(templateContext TemplateContext) error {
 
 			fi, err := os.Stat(path)
 			if err != nil {
-				return errors.Wrap(err, "failed to read file info")
+				return fmt.Errorf("failed to read file info: %w", err)
 			}
 
 			if fi.IsDir() {
@@ -52,22 +51,22 @@ func renderTemplates(templateContext TemplateContext) error {
 
 			tmpl, err := template.ParseFiles(path)
 			if err != nil {
-				return errors.Wrap(err, "failed to parse template")
+				return fmt.Errorf("failed to parse template: %w", err)
 			}
 
 			f, err := os.Create(path)
 			if err != nil {
-				return errors.Wrap(err, "failed to create file")
+				return fmt.Errorf("failed to create file: %w", err)
 			}
 
 			if err := tmpl.Execute(f, templateContext); err != nil {
-				return errors.Wrap(err, "failed to execute template")
+				return fmt.Errorf("failed to execute template: %w", err)
 			}
 
 			return nil
 		})
 	if err != nil {
-		return errors.Wrap(err, "failed to walk directory")
+		return fmt.Errorf("failed to walk directory: %w", err)
 	}
 
 	return nil

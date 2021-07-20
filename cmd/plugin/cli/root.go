@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -8,7 +9,6 @@ import (
 
 	"github.com/{{ .Owner }}/{{ .Repo }}/pkg/logger"
 	"github.com/{{ .Owner }}/{{ .Repo }}/pkg/plugin"
-	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/tj/go-spin"
@@ -59,7 +59,7 @@ func RootCmd() *cobra.Command {
 			}()
 
 			if err := plugin.RunPlugin(KubernetesConfigFlags, namespaceName); err != nil {
-				return errors.Cause(err)
+				return errors.Unwrap(err)
 			}
 
 			log.Info("")
