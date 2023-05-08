@@ -41,6 +41,42 @@ spec:
     - from: LICENSE
       to: "."
     bin: "{{ .PluginName }}.exe"
+  - selector:
+      matchLabels:
+        os: linux
+        arch: arm64
+    uri: https://github.com/{{ .Owner }}/{{ .Repo }}/releases/download/v0.1.0/{{ .PluginName }}_linux_arm64.tar.gz
+    sha256: ""
+    files:
+    - from: "./{{ .PluginName }}"
+      to: "."
+    - from: LICENSE
+      to: "."
+    bin: "{{ .PluginName }}"
+  - selector:
+      matchLabels:
+        os: darwin
+        arch: arm64
+    uri: https://github.com/{{ .Owner }}/{{ .Repo }}/releases/download/v0.1.0/{{ .PluginName }}_darwin_arm64.tar.gz
+    sha256: ""
+    files:
+    - from: "./{{ .PluginName }}"
+      to: "."
+    - from: LICENSE
+      to: "."
+    bin: "{{ .PluginName }}"
+  - selector:
+      matchLabels:
+        os: windows
+        arch: arm64
+    uri: https://github.com/{{ .Owner }}/{{ .Repo }}/releases/download/v0.1.0/{{ .PluginName }}_windows_arm64.zip
+    sha256: ""
+    files:
+    - from: "/{{ .PluginName }}.exe"
+      to: "."
+    - from: LICENSE
+      to: "."
+    bin: "{{ .PluginName }}.exe"
   shortDescription: A new plugin
   homepage: https://github.com/{{ .Owner }}/{{ .Repo }}
   caveats: |
